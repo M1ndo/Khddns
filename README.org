@@ -1,0 +1,35 @@
+#+title: Khddns Dynamic DNS Client
+
+Khddns is DDNS client updater for afraid.org, its simple and can be left runnning the background.
+
+* Installation
+** Prebuilt
+Download from the releases.
+** Build from source with V
+#+begin_src bash
+git clone https://github.com/m1ndo/Khddns
+
+v -prod .
+#+end_src
+* Usage
+#+begin_src bash
+Usage: Khdns [optional-options]
+
+Options:
+  -t|--time    <time-in-seconds>  write the JSON output to a file
+  -s|--subs                       print subdomains and their ips.
+  -c|--config  <config-file>      Load a configuration (Path)
+  -v|--version                    print the version of the executable and exit
+  -h|--help                       print the usage information and exit
+
+By default It will update every 3600 seconds (1hour).
+
+Examples:
+  $ Khdns &
+  $ Khdns -t 1800 # Half an hour
+  $ Khdns -c custom_config.json # Load a custom configuration (config created by default in ~/.khddns.json).
+#+end_src
+* Author
+Written by [[https://github.com/m1ndo][ybenel]]
+* LICENCE
+GLPv3
