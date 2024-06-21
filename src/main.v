@@ -4,7 +4,7 @@ import util
 import time
 
 // run will start the app
-fn run(app &util.App) {
+fn run(mut app util.App) {
 	timeout := if app.opts.time != 3200 {app.opts.time} else {app.config.time}
 	tmp_parsed := time.Duration(timeout * time.second).hours()
 	println("${util.green} Updating Every ${tmp_parsed:.1} hours")
@@ -23,6 +23,7 @@ fn run(app &util.App) {
 				println(msg)
 			}
 		}
+		app.cf_get() or {eprintln(err); continue}
 		app.cf_update() or {eprintln(err); continue}
 		time.sleep(timeout * time.second)
 	}
@@ -39,7 +40,7 @@ fn main() {
 	if !app.opts.config.is_blank() {
 		app.readconf(app.opts.config)!
 	}
-	run(app)
+	run(mut app)
 	// if opts.subs {
 		// app.printsubs()
 	// }

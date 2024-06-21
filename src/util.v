@@ -194,7 +194,6 @@ fn (mut app App) cf_headers()! {
 	headers.add(http.CommonHeader.authorization, "Bearer ${key}")
 	headers.add(http.CommonHeader.content_type, "application/json")
 	app.cf.headers = headers
-	app.cf_get() or {eprintln(err); return}
 }
 
 // cf_get list current domain dns records.
